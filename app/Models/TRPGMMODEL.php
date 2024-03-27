@@ -10,30 +10,34 @@ class TRPGMMODEL extends Model
 {
     use HasFactory;
     protected $table = 'trpgmmodel';
-    protected $primaryKey =  'id_c_pgm_pon';
     protected $fillable = [
-        'id_c_pgm',
-        'id_c_pgm_sub',
-        'id_c_pgm_ver',
+        'trpgm_id',
+        'trpgmsub_id',
+        'trpon_id',
         'c_pgm_model',
         'i_part_nha',
         'n_pgm_model',
-        'i_entry',
+        'user_id',
         'd_entry',
     ];
 
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function trpgm(): BelongsTo
     {
-        return $this->belongsTo(TRPGM::class, 'id_c_pgm');
+        return $this->belongsTo(TRPGM::class);
     }
 
     public function trpgmsub(): BelongsTo
     {
-        return $this->belongsTo(TRPGMSUB::class, 'id_c_pgm_sub');
+        return $this->belongsTo(TRPGMSUB::class);
     }
 
     public function trpon(): BelongsTo
     {
-        return $this->belongsTo(TRPON::class, 'id_c_pgm_ver');
+        return $this->belongsTo(TRPON::class);
     }
 }

@@ -27,5 +27,11 @@
             </a>
         </li>
 
+        <li class="sidebar-item {{ $title == 'View Data Referensi Model Pesawat' ? 'active' : '' }}">
+            <a class="sidebar-link" href="/view_model">
+                <i class="fa-regular fa-eye"></i> <span class="align-middle">View Data Referensi Model Pesawat</span>
+            </a>
+        </li>
+
     </ul>
 </div>

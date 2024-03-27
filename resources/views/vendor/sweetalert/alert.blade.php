@@ -38,7 +38,7 @@
     </script>
 @endif
 <script>
-    function handleDelete(id) {
+    function handleDelete(id, url) {
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -49,7 +49,7 @@
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                document.location.href = '/user/' + id
+                document.location.href = '/' + url + '/' + id
             }
         });
     }

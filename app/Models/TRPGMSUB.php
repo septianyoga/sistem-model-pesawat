@@ -9,8 +9,8 @@ class TRPGMSUB extends Model
 {
     use HasFactory;
     protected $table = 'trpgmsub';
-    protected $primaryKey =  'id_c_pgm_sub';
     protected $fillable = [
+        'c_pgm_sub',
         'n_pgm_sub',
         'i_entry',
         'd_entry',

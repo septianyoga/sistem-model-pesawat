@@ -12,9 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('trpon', function (Blueprint $table) {
-            $table->string('id_c_pgm_ver')->primary();
+            $table->id();
             $table->string('c_pgm');
             $table->string('c_pgm_sub');
+            $table->string('c_pgm_ver');
             $table->string('e_pgm');
             $table->string('c_org_core');
             $table->char('i_entry')->nullable();

@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('trpgm', function (Blueprint $table) {
-            $table->string('id_c_pgm')->primary();
+            $table->id();
+            $table->string('c_pgm');
             $table->string('n_pgm');
             $table->char('i_entry');
             $table->date('d_entry');

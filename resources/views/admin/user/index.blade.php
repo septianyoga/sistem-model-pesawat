@@ -35,8 +35,9 @@
                                         <td>{{ $user->email }}</td>
                                         <td>{{ $user->role }}</td>
                                         <td class="text-center">
-                                            <a onclick="handleDelete({{ $user->id }})" class="btn btn-danger btn-sm"><i
-                                                    data-confirm-delete="true" class="fa-solid fa-trash"></i></a>
+                                            <a onclick="handleDelete({{ $user->id }},'users')"
+                                                class="btn btn-danger btn-sm"><i data-confirm-delete="true"
+                                                    class="fa-solid fa-trash"></i></a>
                                             <button id="btn-{{ $user->id }}" class="btn btn-info btn-sm"
                                                 data-bs-toggle="modal" data-bs-target="#edit-{{ $user->id }}"><i
                                                     class="fa-solid fa-pen-to-square"></i></button>
@@ -122,7 +123,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah User</h1>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit User</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <form action="/user/{{ $u->id }}" method="post">

@@ -12,14 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('trpgmmodel', function (Blueprint $table) {
-            $table->unsignedBigInteger('id_c_pgm_pon')->index(); // Menambahkan indeks di kolom referensi
-            // $table->foreign('id_c_pgm_pon')->references('id_c_pon')->on('trpon'); // Merujuk ke primary key 'id'
-            $table->string('c_pgm');
-            $table->foreign('c_pgm')->references('id_c_pgm')->on('trpgm');
-            $table->string('c_pgm_sub');
-            $table->foreign('c_pgm_sub')->references('id_c_pgm_sub')->on('trpgmsub');
-            $table->string('c_pgm_ver');
-            $table->foreign('c_pgm_ver')->references('id_c_pgm_ver')->on('trpon'); // Mengubah referensi ke kolom 'c_pgm_ver'
+            $table->id();
+            $table->unsignedBigInteger('trpgm_id')->nullable()->references('id')->on('trpgm')->onDelete('set null');
+            $table->foreign('trpgm_id')->references('id')->on('trpgm')->onDelete('set null');
+            $table->unsignedBigInteger('trpgmsub_id')->nullable()->references('id')->on('trpgmsub')->onDelete('set null');
+            $table->foreign('trpgmsub_id')->references('id')->on('trpgmsub')->onDelete('set null');
+            $table->unsignedBigInteger('trpon_id')->nullable()->references('id')->on('trpon')->onDelete('set null');
+            $table->foreign('trpon_id')->references('id')->on('trpon')->onDelete('set null');
             $table->char('c_pgm_model');
             $table->char('i_part_nha');
             $table->string('n_pgm_model');
