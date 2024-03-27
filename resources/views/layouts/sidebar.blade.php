@@ -21,8 +21,8 @@
             </a>
         </li>
 
-        <li class="sidebar-item {{ $title == 'Kelola User' ? 'active' : '' }}">
-            <a class="sidebar-link" href="/users">
+        <li class="sidebar-item {{ $title == 'Kelola Model Referensi' ? 'active' : '' }}">
+            <a class="sidebar-link" href="/model_referensi">
                 <i class="fa-solid fa-plane"></i> <span class="align-middle">Kelola Data Model</span>
             </a>
         </li>
