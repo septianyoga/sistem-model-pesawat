@@ -36,7 +36,7 @@ class ModelReferensiController extends Controller
     {
         //
         return view('ditek.model_referensi.add', [
-            'title' => 'Tambah Model Referensi',
+            'title' => 'Add Data Model',
             'trpgms'    => TRPGM::all(),
             'trpgmsubs' => TRPGMSUB::all(),
             'trpons'    => TRPON::all()
@@ -78,7 +78,7 @@ class ModelReferensiController extends Controller
     {
         //
         return view('ditek.model_referensi.edit', [
-            'title' => 'Edit Model Referensi',
+            'title' => 'Update Data Model',
             'model'    => TRPGMMODEL::findOrFail($id),
             'trpgms'    => TRPGM::all(),
             'trpgmsubs' => TRPGMSUB::all(),

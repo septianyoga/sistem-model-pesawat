@@ -12,7 +12,7 @@
 
                         <h5 class="card-title mb-0">{{ $title }}</h5>
                         <button class="btn btn-primary btn-sm" id="modal-btn" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal"><i class="fa-solid fa-user-plus"></i> Tambah</button>
+                            data-bs-target="#exampleModal"><i class="fa-solid fa-user-plus"></i> Add</button>
                     </div>
                     <div class="adjust-table">
                         <table class="table table-hover my-0" id="example">
@@ -57,7 +57,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah User</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Add Data User</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form action="/user" method="post">
@@ -109,7 +109,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Tambah</button>
+                        <button type="submit" class="btn btn-primary">Add</button>
                     </div>
                 </form>
             </div>
@@ -123,7 +123,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit User</h1>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Update Data User</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <form action="/user/{{ $u->id }}" method="post">
@@ -182,7 +182,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Edit</button>
+                            <button type="submit" class="btn btn-primary">Update</button>
                         </div>
                     </form>
                 </div>
