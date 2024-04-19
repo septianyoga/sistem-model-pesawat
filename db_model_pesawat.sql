@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 19, 2024 at 01:44 PM
+-- Generation Time: Apr 19, 2024 at 01:47 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -26,8 +26,6 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `trpgm`
 --
-
-
 
 --
 -- Dumping data for table `trpgm`
@@ -148,9 +146,23 @@ INSERT INTO `trpgm` (`id`, `c_pgm`, `n_pgm`, `i_entry`, `d_entry`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `trpgmsub`
+-- Table structure for table `trpgmmodel`
 --
 
+--
+-- Dumping data for table `trpgmmodel`
+--
+
+INSERT INTO `trpgmmodel` (`id`, `trpgm_id`, `trpgmsub_id`, `trpon_id`, `c_pgm_model`, `i_part_nha`, `n_pgm_model`, `user_id`, `d_entry`, `created_at`, `updated_at`) VALUES
+(2, 80, 4, 3, 'Model Pesawat', '123123', 'Model Pesawat Terbang', 1, '2024-03-27', '2024-03-27 08:17:46', '2024-03-27 08:17:46'),
+(3, 4, 1, 2, 'Model Pesawat', '123123', 'Model Pesawat Terbang', 1, '2024-03-27', '2024-03-27 09:34:41', '2024-03-27 09:43:10'),
+(4, 2, 32, 7, 'Model Pesawat', '12312322', 'Model Pesawat Terbangg', 4, '2024-04-15', '2024-04-14 21:25:46', '2024-04-14 21:25:46');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `trpgmsub`
+--
 
 
 --
@@ -1030,6 +1042,16 @@ ALTER TABLE `trpgm`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `trpgmmodel`
+--
+ALTER TABLE `trpgmmodel`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `trpgmmodel_trpgm_id_foreign` (`trpgm_id`),
+  ADD KEY `trpgmmodel_trpgmsub_id_foreign` (`trpgmsub_id`),
+  ADD KEY `trpgmmodel_trpon_id_foreign` (`trpon_id`),
+  ADD KEY `trpgmmodel_user_id_foreign` (`user_id`);
+
+--
 -- Indexes for table `trpgmsub`
 --
 ALTER TABLE `trpgmsub`
@@ -1052,6 +1074,12 @@ ALTER TABLE `trpgm`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
 
 --
+-- AUTO_INCREMENT for table `trpgmmodel`
+--
+ALTER TABLE `trpgmmodel`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `trpgmsub`
 --
 ALTER TABLE `trpgmsub`
@@ -1062,6 +1090,19 @@ ALTER TABLE `trpgmsub`
 --
 ALTER TABLE `trpon`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=745;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `trpgmmodel`
+--
+ALTER TABLE `trpgmmodel`
+  ADD CONSTRAINT `trpgmmodel_trpgm_id_foreign` FOREIGN KEY (`trpgm_id`) REFERENCES `trpgm` (`id`) ON DELETE SET NULL,
+  ADD CONSTRAINT `trpgmmodel_trpgmsub_id_foreign` FOREIGN KEY (`trpgmsub_id`) REFERENCES `trpgmsub` (`id`) ON DELETE SET NULL,
+  ADD CONSTRAINT `trpgmmodel_trpon_id_foreign` FOREIGN KEY (`trpon_id`) REFERENCES `trpon` (`id`) ON DELETE SET NULL,
+  ADD CONSTRAINT `trpgmmodel_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
