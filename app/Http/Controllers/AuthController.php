@@ -39,8 +39,14 @@ class AuthController extends Controller
             'password'  => $request->password
         ];
 
+
         if (Auth::attempt($auth)) {
             $request->session()->regenerate();
+            if (!Auth::user()->active) {
+                Auth::logout();
+                Alert::error('Gagal', 'Akun anda dinonaktifkan. Silahkan hubungi admin!');
+                return redirect()->back();
+            }
             return redirect()->to('dashboard');
         }
         Alert::error('Gagal', 'Username atau Password Salah!');

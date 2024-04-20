@@ -6,6 +6,7 @@ use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -95,9 +96,14 @@ class UserController extends Controller
     public function destroy(string $id)
     {
         //
+        if ($id == Auth::user()->id) {
+            Alert::warning('Peringatan', 'Anda tidak bisa nonaktifkan akun sendiri!');
+            return redirect()->to('/users');
+        }
+
         $user = User::findOrFail($id);
-        $user->delete();
-        Alert::success('Berhasil', 'User Berhasil Dihapus!');
+        $user->update(['active' => !$user->active]);
+        Alert::success('Berhasil', 'User Berhasil Dinonaktifkan!');
         return redirect('users');
     }
 }

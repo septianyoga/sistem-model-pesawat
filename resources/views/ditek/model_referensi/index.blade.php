@@ -11,10 +11,13 @@
                     <div class="card-header d-flex justify-content-between align-items-center">
 
                         <h5 class="card-title mb-0">{{ $title }}</h5>
-                        <a href="/model_referensi/add" class="btn btn-primary btn-sm"><i class="fa-solid fa-plus"></i> Add Data
-                            Model</a>
-                        {{-- <button class="btn btn-primary btn-sm" id="modal-btn" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal">Tambah Model</button> --}}
+                        <div>
+                            <a href="/model_referensi/add" class="btn btn-primary btn-sm"><i class="fa-solid fa-plus"></i> Add
+                                Data
+                                Model</a>
+                            <button class="btn btn-success btn-sm" id="modal-btn" data-bs-toggle="modal"
+                                data-bs-target="#import">Import Excel</button>
+                        </div>
                     </div>
                     <div class="adjust-table">
                         <table class="table table-hover my-0 w-100" id="example">
@@ -36,13 +39,13 @@
                                 @foreach ($models as $model)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $model->trpgm->c_pgm }}</td>
-                                        <td>{{ $model->trpgmsub->c_pgm_sub }}</td>
-                                        <td>{{ $model->trpon->c_pgm_ver }}</td>
+                                        <td>{{ $model->trpgm?->c_pgm }}</td>
+                                        <td>{{ $model->trpgmsub?->c_pgm_sub }}</td>
+                                        <td>{{ $model->trpon?->c_pgm_ver }}</td>
                                         <td>{{ $model->c_pgm_model }}</td>
                                         <td>{{ $model->i_part_nha }}</td>
                                         <td>{{ $model->n_pgm_model }}</td>
-                                        <td>{{ $model->user->name }}</td>
+                                        <td>{{ $model->user?->name }}</td>
                                         <td>{{ $model->created_at }}</td>
                                         <td class="text-center">
                                             <a onclick="handleDelete({{ $model->id }},'model_referensi')"
@@ -61,7 +64,35 @@
         </div>
     </div>
 
-    {{-- modal tambah --}}
+    {{-- modal import --}}
+    <div class="modal fade" id="import" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Import Model Referensi</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="/model_referensi/import" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <p>Keterangan: <br> Format kolom Excel harus sama.
+                                <a class="text-decoration-none" href="/download_template_excel">Klik Disini</a>
+                                untuk download template excel.
+                            </p>
+                            <label class="form-label">Masukan file excel</label>
+                            <input type="file" class="form-control" name="file" placeholder="Masukan file"
+                                accept=".xlsx,.xlx,.csv " value="{{ old('name') }}" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Import</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
     @if ($errors->any())
         <script>

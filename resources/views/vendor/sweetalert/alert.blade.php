@@ -53,4 +53,20 @@
             }
         });
     }
+
+    function handleBanned(id, url) {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "If the account is deactivated, the account will not be able to be used!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.location.href = '/' + url + '/' + id
+            }
+        });
+    }
 </script>

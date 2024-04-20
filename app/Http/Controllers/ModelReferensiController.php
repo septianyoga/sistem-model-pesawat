@@ -10,6 +10,10 @@ use App\Models\TRPGMSUB;
 use App\Models\TRPON;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\ModelRefImport;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class ModelReferensiController extends Controller
@@ -126,5 +130,33 @@ class ModelReferensiController extends Controller
             'trpgmsubs' => TRPGMSUB::all(),
             'trpons'    => TRPON::all()
         ]);
+    }
+
+    public function import(Request $request)
+    {
+        // menangkap file excel
+        $file = $request->file('file');
+
+        // membuat nama file unik
+        $nama_file = rand() . $file->getClientOriginalName();
+
+        // upload ke folder file_siswa di dalam folder public
+        $file->move('file_excel', $nama_file);
+
+        // import data
+        Excel::import(new ModelRefImport, public_path('/file_excel/' . $nama_file));
+
+        // hapus file setelah impor selesai
+        unlink(public_path('/file_excel/' . $nama_file));
+
+        // notifikasi dengan session
+        Alert::success('Berhasil', 'Model Referensi Berhasil Diimport!');
+        return redirect()->to('/model_referensi');
+    }
+
+    public function downloadTemplate()
+    {
+        $file = public_path() . "/file_excel/template_import_excel.xlsx";
+        return Response::download($file);
     }
 }

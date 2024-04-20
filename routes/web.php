@@ -44,6 +44,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/model_referensi/{id}', [ModelReferensiController::class, 'destroy'])->name('model_referensi');
         Route::get('/model_referensi/{id}/edit', [ModelReferensiController::class, 'edit'])->name('model_referensi');
         Route::patch('/model_referensi/{id}', [ModelReferensiController::class, 'update']);
+        Route::post('/model_referensi/import', [ModelReferensiController::class, 'import']);
+        Route::get('/download_template_excel', [ModelReferensiController::class, 'downloadTemplate'])->name('download_template_excel');
     });
 
 

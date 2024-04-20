@@ -23,6 +23,7 @@
                                     <th>Username</th>
                                     <th>Email</th>
                                     <th>Role</th>
+                                    <th>Status</th>
                                     <th class="text-center">Opsi</th>
                                 </tr>
                             </thead>
@@ -34,10 +35,13 @@
                                         <td>{{ $user->username }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>{{ $user->role }}</td>
+                                        <td>{{ $user->active ? 'Active' : 'Non Active' }}</td>
                                         <td class="text-center">
-                                            <a onclick="handleDelete({{ $user->id }},'users')"
-                                                class="btn btn-danger btn-sm"><i data-confirm-delete="true"
-                                                    class="fa-solid fa-trash"></i></a>
+                                            <a onclick="handleBanned({{ $user->id }},'user')"
+                                                title="{{ $user->active ? 'Non ' : '' }}Aktifkan"
+                                                class="btn btn-{{ $user->active ? 'danger ' : 'success' }} btn-sm"><i
+                                                    data-confirm-delete="true"
+                                                    class="fa-solid fa-{{ $user->active ? 'ban ' : 'check' }}"></i></a>
                                             <button id="btn-{{ $user->id }}" class="btn btn-info btn-sm"
                                                 data-bs-toggle="modal" data-bs-target="#edit-{{ $user->id }}"><i
                                                     class="fa-solid fa-pen-to-square"></i></button>
