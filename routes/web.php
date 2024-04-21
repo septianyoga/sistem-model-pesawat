@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EBOMController;
 use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\MBOMController;
 use App\Http\Controllers\ModelReferensiController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -46,6 +48,20 @@ Route::middleware('auth')->group(function () {
         Route::patch('/model_referensi/{id}', [ModelReferensiController::class, 'update']);
         Route::post('/model_referensi/import', [ModelReferensiController::class, 'import']);
         Route::get('/download_template_excel', [ModelReferensiController::class, 'downloadTemplate'])->name('download_template_excel');
+
+        Route::get('/ebom', [EBOMController::class, 'index'])->name('ebom');
+        Route::get('/ebom/add', [EBOMController::class, 'create'])->name('ebom.add');
+        Route::get('/ebom/{id}', [EBOMController::class, 'destroy']);
+        Route::get('/ebom/{id}/edit', [EBOMController::class, 'edit'])->name('ebom');
+        Route::post('/ebom', [EBOMController::class, 'store']);
+        Route::patch('/ebom/{id}', [EBOMController::class, 'update']);
+
+        Route::get('/mbom', [MBOMController::class, 'index'])->name('mbom');
+        Route::get('/mbom/add', [MBOMController::class, 'create'])->name('mbom.add');
+        Route::get('/mbom/{id}', [MBOMController::class, 'destroy']);
+        Route::get('/mbom/{id}/edit', [MBOMController::class, 'edit'])->name('mbom');
+        Route::post('/mbom', [MBOMController::class, 'store']);
+        Route::patch('/mbom/{id}', [MBOMController::class, 'update']);
     });
 
 

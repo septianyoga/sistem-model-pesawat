@@ -21,6 +21,18 @@
             </a>
         </li>
 
+        <li class="sidebar-item {{ $title == 'Kelola EBOM' ? 'active' : '' }}">
+            <a class="sidebar-link" href="/ebom">
+                <i class="fa-solid fa-users"></i> <span class="align-middle">Kelola EBOM</span>
+            </a>
+        </li>
+
+        <li class="sidebar-item {{ $title == 'Kelola MBOM' ? 'active' : '' }}">
+            <a class="sidebar-link" href="/mbom">
+                <i class="fa-solid fa-users"></i> <span class="align-middle">Kelola MBOM</span>
+            </a>
+        </li>
+
         <li class="sidebar-item {{ $title == 'Kelola Model Referensi' ? 'active' : '' }}">
             <a class="sidebar-link" href="/model_referensi">
                 <i class="fa-solid fa-plane"></i> <span class="align-middle">Kelola Data Model</span>
