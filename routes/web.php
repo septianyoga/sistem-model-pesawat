@@ -39,7 +39,7 @@ Route::middleware('auth')->group(function () {
         Route::patch('/user/{id}', [UserController::class, 'update']);
     });
 
-    Route::group(['middleware' => 'userAkses:Direktorat Teknologi'], function () {
+    Route::group(['middleware' => 'userAkses:Admin,Direktorat Teknologi'], function () {
         Route::get('/model_referensi', [ModelReferensiController::class, 'index'])->name('model_referensi');
         Route::get('/model_referensi/add', [ModelReferensiController::class, 'create'])->name('model_referensi');
         Route::post('/model_referensi', [ModelReferensiController::class, 'store']);
@@ -69,7 +69,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update']);
 
 
-    Route::group(['middleware' => 'userAkses:Direktorat Produksi'], function () {
+    Route::group(['middleware' => 'userAkses:Admin,Direktorat Produksi'], function () {
         Route::get('/view_model', [ModelReferensiController::class, 'viewModel'])->name('view_model');
     });
 });
