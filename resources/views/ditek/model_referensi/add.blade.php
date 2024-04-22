@@ -55,7 +55,8 @@
                                     <select name="trpon_id" id="select4" class="form-select">
                                         <option value="" hidden>-- Pilih --</option>
                                         @foreach ($trpons as $trpon)
-                                            <option value="{{ $trpon->id }}">{{ $trpon->c_pgm_ver }}</option>
+                                            <option value="{{ $trpon->id }}">{{ $trpon->c_pgm_ver }} |
+                                                {{ $trpon->c_pgm }}</option>
                                         @endforeach
                                     </select>
                                     @error('trpon_id')
