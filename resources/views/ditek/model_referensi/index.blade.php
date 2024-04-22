@@ -19,7 +19,7 @@
                                 data-bs-target="#import">Import Excel</button>
                         </div>
                     </div>
-                    <div class="adjust-table">
+                    <div class="adjust-table overflow-auto ">
                         <table class="table table-hover my-0 w-100" id="example">
                             <thead>
                                 <tr>
