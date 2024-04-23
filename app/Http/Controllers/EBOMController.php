@@ -5,7 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\EBOM;
 use App\Http\Requests\StoreEBOMRequest;
 use App\Http\Requests\UpdateEBOMRequest;
+use App\Imports\EBOMImport;
 use App\Models\TRPGMMODEL;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
+use Maatwebsite\Excel\Facades\Excel;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class EBOMController extends Controller
@@ -17,7 +21,7 @@ class EBOMController extends Controller
     {
         //
         return view('ditek.ebom.index', [
-            'title' => 'Kelola EBOM',
+            'title' => 'View Data EBOM',
             'eboms' => EBOM::with('trpgmmodel')->get()
         ]);
     }
@@ -104,5 +108,33 @@ class EBOMController extends Controller
         $bom->delete();
         Alert::success('Berhasil', 'Data EBOM Berhasil Dihapus!');
         return redirect('ebom');
+    }
+
+    public function import(Request $request)
+    {
+        // menangkap file excel
+        $file = $request->file('file');
+
+        // membuat nama file unik
+        $nama_file = rand() . $file->getClientOriginalName();
+
+        // upload ke folder file_siswa di dalam folder public
+        $file->move('file_excel', $nama_file);
+
+        // import data
+        Excel::import(new EBOMImport, public_path('/file_excel/' . $nama_file));
+
+        // hapus file setelah impor selesai
+        unlink(public_path('/file_excel/' . $nama_file));
+
+        // notifikasi dengan session
+        Alert::success('Berhasil', 'Data EBOM Berhasil Diimport!');
+        return redirect()->to('/ebom');
+    }
+
+    public function download()
+    {
+        $file = public_path() . "/file_excel/template_ebom.xlsx";
+        return Response::download($file);
     }
 }

@@ -15,6 +15,8 @@
                             <a href="/mbom/add" class="btn btn-primary btn-sm"><i class="fa-solid fa-plus"></i> Add
                                 Data
                                 MBOM</a>
+                            <button class="btn btn-success btn-sm" id="modal-btn" data-bs-toggle="modal"
+                                data-bs-target="#import">Import Excel</button>
                         </div>
                     </div>
                     <div class="adjust-table">
@@ -54,6 +56,35 @@
                         </table>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="import" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Import Data MBOM</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="/mbom/import" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <p>Keterangan: <br> Format kolom Excel harus sama.
+                                <a class="text-decoration-none" href="/download_template_excel">Klik Disini</a>
+                                untuk download template excel.
+                            </p>
+                            <label class="form-label">Masukan file excel</label>
+                            <input type="file" class="form-control" name="file" placeholder="Masukan file"
+                                accept=".xlsx,.xlx,.csv " value="{{ old('name') }}" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Import</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

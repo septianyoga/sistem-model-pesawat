@@ -22,15 +22,15 @@
                 <i data-feather="chevron-right"></i>
             </a>
             <ul id="pages"
-                class="sidebar-dropdown ms-3 list-unstyled collapse {{ $title == 'Dashboard' || $title == 'Kelola EBOM' || $title == 'Kelola MBOM' ? 'show' : '' }}"
+                class="sidebar-dropdown ms-3 list-unstyled collapse {{ $title == 'Dashboard' || $title == 'View Data EBOM' || $title == 'View Data MBOM' || $title == 'Add Data EBOM' || $title == 'Add Data MBOM' || $title == 'Update Data EBOM' || $title == 'Update Data MBOM' ? 'show' : '' }}"
                 data-bs-parent="#sidebar">
                 <li class="sidebar-item {{ $title == 'Dashboard' ? 'active' : '' }} "><a class='sidebar-link'
                         href='/dashboard'><i class="fa-solid fa-ellipsis"></i>
                         Dashboard</a></li>
-                <li class="sidebar-item {{ $title == 'Kelola EBOM' ? 'active' : '' }}"><a class='sidebar-link'
+                <li class="sidebar-item {{ $title == 'View Data EBOM' ? 'active' : '' }}"><a class='sidebar-link'
                         href='/ebom'><i class="fa-solid fa-ellipsis"></i>
                         View Data EBOM</a></li>
-                <li class="sidebar-item"><a class='sidebar-link {{ $title == 'Kelola MBOM' ? 'active' : '' }}'
+                <li class="sidebar-item {{ $title == 'View Data MBOM' ? 'active' : '' }}"><a class='sidebar-link '
                         href='/mbom'><i class="fa-solid fa-ellipsis"></i>
                         View Data MBOM</a></li>
             </ul>

@@ -55,6 +55,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/ebom/{id}/edit', [EBOMController::class, 'edit'])->name('ebom');
         Route::post('/ebom', [EBOMController::class, 'store']);
         Route::patch('/ebom/{id}', [EBOMController::class, 'update']);
+        Route::post('/ebom/import', [EBOMController::class, 'import']);
+        Route::get('/download_ebom_template', [EBOMController::class, 'download'])->name('download_ebom_template');
 
         Route::get('/mbom', [MBOMController::class, 'index'])->name('mbom');
         Route::get('/mbom/add', [MBOMController::class, 'create'])->name('mbom.add');
@@ -62,6 +64,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/mbom/{id}/edit', [MBOMController::class, 'edit'])->name('mbom');
         Route::post('/mbom', [MBOMController::class, 'store']);
         Route::patch('/mbom/{id}', [MBOMController::class, 'update']);
+        Route::post('/mbom/import', [MBOMController::class, 'import']);
+        Route::get('/download_mbom_template', [MBOMController::class, 'download'])->name('download_mbom_template');
     });
 
 

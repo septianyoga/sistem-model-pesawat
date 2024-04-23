@@ -5,7 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\MBOM;
 use App\Http\Requests\StoreMBOMRequest;
 use App\Http\Requests\UpdateMBOMRequest;
+use App\Imports\MBOMImport;
 use App\Models\TRPGMMODEL;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
+use Maatwebsite\Excel\Facades\Excel;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class MBOMController extends Controller
@@ -17,7 +21,7 @@ class MBOMController extends Controller
     {
         //
         return view('ditek.mbom.index', [
-            'title' => 'Kelola MBOM',
+            'title' => 'View Data MBOM',
             'eboms' => MBOM::with('trpgmmodel')->get()
         ]);
     }
@@ -104,5 +108,33 @@ class MBOMController extends Controller
         $bom->delete();
         Alert::success('Berhasil', 'Data MBOM Berhasil Dihapus!');
         return redirect('mbom');
+    }
+
+    public function import(Request $request)
+    {
+        // menangkap file excel
+        $file = $request->file('file');
+
+        // membuat nama file unik
+        $nama_file = rand() . $file->getClientOriginalName();
+
+        // upload ke folder file_siswa di dalam folder public
+        $file->move('file_excel', $nama_file);
+
+        // import data
+        Excel::import(new MBOMImport, public_path('/file_excel/' . $nama_file));
+
+        // hapus file setelah impor selesai
+        unlink(public_path('/file_excel/' . $nama_file));
+
+        // notifikasi dengan session
+        Alert::success('Berhasil', 'Data MBOM Berhasil Diimport!');
+        return redirect()->to('/mbom');
+    }
+
+    public function download()
+    {
+        $file = public_path() . "/file_excel/template_mbom.xlsx";
+        return Response::download($file);
     }
 }
