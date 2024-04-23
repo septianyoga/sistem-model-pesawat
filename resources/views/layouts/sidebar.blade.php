@@ -9,10 +9,34 @@
             Pages
         </li>
 
-        <li class="sidebar-item {{ $title == 'Dashboard' ? 'active' : '' }}">
-            <a class="sidebar-link" href="/dashboard">
+        <li class="sidebar-item ">
+            {{-- <a class="sidebar-link" href="/dashboard">
                 <i class="fa-solid fa-gauge"></i> <span class="align-middle">Dashboard</span>
+            </a> --}}
+            <a data-bs-target="#pages" data-bs-toggle="collapse"
+                class="sidebar-link collapsed d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center">
+                    <i class="fa-solid fa-gauge"></i>
+                    <span class="align-middle ms-2">Dashboard</span>
+                </div>
+                <i data-feather="chevron-right"></i>
             </a>
+            <ul id="pages"
+                class="sidebar-dropdown ms-3 list-unstyled collapse {{ $title == 'Dashboard' || $title == 'Kelola EBOM' || $title == 'Kelola MBOM' ? 'show' : '' }}"
+                data-bs-parent="#sidebar">
+                <li class="sidebar-item {{ $title == 'Dashboard' ? 'active' : '' }} "><a class='sidebar-link'
+                        href='/dashboard'><i class="fa-solid fa-ellipsis"></i>
+                        Dashboard</a></li>
+                <li class="sidebar-item {{ $title == 'Kelola EBOM' ? 'active' : '' }}"><a class='sidebar-link'
+                        href='/ebom'><i class="fa-solid fa-ellipsis"></i>
+                        View Data EBOM</a></li>
+                <li class="sidebar-item"><a class='sidebar-link {{ $title == 'Kelola MBOM' ? 'active' : '' }}'
+                        href='/mbom'><i class="fa-solid fa-ellipsis"></i>
+                        View Data MBOM</a></li>
+            </ul>
+        </li>
+
+        <li class="sidebar-item">
         </li>
 
         <li class="sidebar-item {{ $title == 'Kelola User' ? 'active' : '' }}">
@@ -21,7 +45,7 @@
             </a>
         </li>
 
-        <li class="sidebar-item {{ $title == 'Kelola EBOM' ? 'active' : '' }}">
+        {{-- <li class="sidebar-item {{ $title == 'Kelola EBOM' ? 'active' : '' }}">
             <a class="sidebar-link" href="/ebom">
                 <i class="fa-solid fa-users"></i> <span class="align-middle">Kelola EBOM</span>
             </a>
@@ -31,7 +55,7 @@
             <a class="sidebar-link" href="/mbom">
                 <i class="fa-solid fa-users"></i> <span class="align-middle">Kelola MBOM</span>
             </a>
-        </li>
+        </li> --}}
 
         <li class="sidebar-item {{ $title == 'Kelola Model Referensi' ? 'active' : '' }}">
             <a class="sidebar-link" href="/model_referensi">
