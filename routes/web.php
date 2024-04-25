@@ -78,6 +78,7 @@ Route::middleware('auth')->group(function () {
 
     Route::group(['middleware' => 'userAkses:Admin,Direktorat Produksi'], function () {
         Route::get('/view_model', [ModelReferensiController::class, 'viewModel'])->name('view_model');
+        Route::get('/view_model/{id}', [ModelReferensiController::class, 'show'])->name('view_model');
     });
 });
 

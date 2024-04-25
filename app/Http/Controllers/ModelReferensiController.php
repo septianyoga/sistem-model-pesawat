@@ -70,9 +70,14 @@ class ModelReferensiController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(TRPGMMODEL $tRPGMMODEL)
+    public function show(TRPGMMODEL $tRPGMMODEL, string $id)
     {
         //
+        $model = $tRPGMMODEL->with(['user', 'trpgm', 'trpgmsub', 'trpon'])->findOrFail($id);
+        return view('dipro.detail', [
+            'title' => 'Detail Data Referensi Model Pesawat',
+            'models'    => $model
+        ]);
     }
 
     /**

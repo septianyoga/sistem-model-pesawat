@@ -27,6 +27,7 @@
                                     <th>Nama Model</th>
                                     <th>Nama User Entry</th>
                                     <th>Date Entry</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -41,6 +42,11 @@
                                         <td>{{ $model->n_pgm_model }}</td>
                                         <td>{{ $model->user->name }}</td>
                                         <td>{{ $model->created_at }}</td>
+                                        <td class="text-center">
+                                            <a href="/view_model/{{ $model->id }}" title="Detail"
+                                                class="btn btn-success btn-sm"><i data-confirm-delete="true"
+                                                    class="fa-solid fa-eye"></i></a>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
