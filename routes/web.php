@@ -21,10 +21,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', [LandingPageController::class, 'index']);
-Route::get('/', function () {
-    return redirect()->to('login');
-});
+Route::get('/', [LandingPageController::class, 'index']);
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'index'])->name('login');
