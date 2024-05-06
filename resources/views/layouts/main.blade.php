@@ -25,6 +25,14 @@
     <style>
         .adjust-table {
             padding: 10px !important;
+
+        }
+
+        @media (max-width: 1250px) {
+            .adjust-table {
+                overflow-x: scroll;
+            }
+
         }
     </style>
 </head>
@@ -69,6 +77,7 @@
     </script>
     <script>
         $('#select2').select2();
+        $('#select2-nha').select2();
         $('#select3').select2();
         $('#select4').select2();
     </script>

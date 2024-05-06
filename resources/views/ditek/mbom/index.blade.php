@@ -29,25 +29,27 @@
                                     <th>Component</th>
                                     <th>Item Description</th>
                                     <th>Quantity</th>
+                                    <th>NHA EBOM</th>
                                     <th>TRPGM MODEL</th>
                                     <th class="text-center">Opsi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($eboms as $ebom)
+                                @foreach ($mboms as $mbom)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $ebom->nha }}</td>
-                                        <td>{{ $ebom->no_item }}</td>
-                                        <td>{{ $ebom->component }}</td>
-                                        <td>{{ $ebom->item_description }}</td>
-                                        <td>{{ $ebom->quantity }}</td>
-                                        <td>{{ $ebom->trpgmmodel->n_pgm_model }}</td>
+                                        <td>{{ $mbom->nha }}</td>
+                                        <td>{{ $mbom->no_item }}</td>
+                                        <td>{{ $mbom->component }}</td>
+                                        <td>{{ $mbom->item_description }}</td>
+                                        <td>{{ $mbom->quantity }}</td>
+                                        <td>{{ $mbom->ebom->nha }}</td>
+                                        <td>{{ $mbom->trpgmmodel->n_pgm_model }}</td>
                                         <td class="text-center">
-                                            <a onclick="handleDelete({{ $ebom->id }},'mbom')"
+                                            <a onclick="handleDelete({{ $mbom->id }},'mbom')"
                                                 class="btn btn-danger btn-sm"><i data-confirm-delete="true"
                                                     class="fa-solid fa-trash"></i></a>
-                                            <a href="/mbom/{{ $ebom->id }}/edit" class="btn btn-info btn-sm"><i
+                                            <a href="/mbom/{{ $mbom->id }}/edit" class="btn btn-info btn-sm"><i
                                                     class="fa-solid fa-pen-to-square"></i></a>
                                         </td>
                                     </tr>

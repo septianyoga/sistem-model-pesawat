@@ -16,11 +16,17 @@ class MBOM extends Model
         'component',
         'item_description',
         'quantity',
+        'drawing',
         'trpgmmodel_id',
     ];
 
     public function trpgmmodel(): BelongsTo
     {
         return $this->belongsTo(TRPGMMODEL::class);
+    }
+
+    public function ebom(): BelongsTo
+    {
+        return $this->belongsTo(EBOM::class, 'drawing', 'nha');
     }
 }

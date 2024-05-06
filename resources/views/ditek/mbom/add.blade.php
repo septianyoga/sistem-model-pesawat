@@ -75,6 +75,22 @@
                             </div>
                             <div class="row mb-2">
                                 <div class="col-3">
+                                    <label class="form-label">NHA EBOM</label>
+                                </div>
+                                <div class="col-9">
+                                    <select name="drawing" id="select2-nha" class="form-select">
+                                        <option value="" hidden>-- Pilih --</option>
+                                        @foreach ($ebom as $eb)
+                                            <option value="{{ $eb->nha }}">{{ $eb->nha }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('drawing')
+                                        <small class="text-danger">*{{ $message }}</small>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-3">
                                     <label class="form-label">TRPGM MODEL</label>
                                 </div>
                                 <div class="col-9">

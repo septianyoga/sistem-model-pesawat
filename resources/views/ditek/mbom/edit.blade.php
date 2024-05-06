@@ -78,6 +78,23 @@
                             </div>
                             <div class="row mb-2">
                                 <div class="col-3">
+                                    <label class="form-label">NHA EBOM</label>
+                                </div>
+                                <div class="col-9">
+                                    <select name="drawing" id="select2-nha" class="form-select">
+                                        @foreach ($eboms as $ebom)
+                                            <option value="{{ $ebom->nha }}"
+                                                {{ $mbom->drawing == $ebom->nha ? 'selected' : '' }}>
+                                                {{ $ebom->nha }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('drawing')
+                                        <small class="text-danger">*{{ $message }}</small>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-3">
                                     <label class="form-label">TRPGM MODEL</label>
                                 </div>
                                 <div class="col-9">

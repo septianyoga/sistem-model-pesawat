@@ -6,6 +6,7 @@ use App\Models\MBOM;
 use App\Http\Requests\StoreMBOMRequest;
 use App\Http\Requests\UpdateMBOMRequest;
 use App\Imports\MBOMImport;
+use App\Models\EBOM;
 use App\Models\TRPGMMODEL;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
@@ -22,7 +23,7 @@ class MBOMController extends Controller
         //
         return view('ditek.mbom.index', [
             'title' => 'View Data MBOM',
-            'eboms' => MBOM::with('trpgmmodel')->get()
+            'mboms' => MBOM::with('trpgmmodel', 'ebom')->get()
         ]);
     }
 
@@ -34,7 +35,8 @@ class MBOMController extends Controller
         //
         return view('ditek.mbom.add', [
             'title' => 'Add Data MBOM',
-            'trpgmmodel'    => TRPGMMODEL::all()
+            'trpgmmodel'    => TRPGMMODEL::all(),
+            'ebom'      => EBOM::all()
         ]);
     }
 
@@ -50,6 +52,7 @@ class MBOMController extends Controller
             'component' => $request->component,
             'item_description' => $request->item_description,
             'quantity' => $request->quantity,
+            'drawing' => $request->drawing,
             'trpgmmodel_id' => $request->trpgmmodel,
         ];
         MBOM::create($data);
@@ -74,7 +77,8 @@ class MBOMController extends Controller
         return view('ditek.mbom.edit', [
             'title' => 'Update Data MBOM',
             'mbom'  => $mBOM->with('trpgmmodel')->findOrFail($id),
-            'trpgmmodel'    => TRPGMMODEL::all()
+            'trpgmmodel'    => TRPGMMODEL::all(),
+            'eboms'      => EBOM::all()
         ]);
     }
 
@@ -91,6 +95,7 @@ class MBOMController extends Controller
             'component' => $request->component,
             'item_description' => $request->item_description,
             'quantity' => $request->quantity,
+            'drawing' => $request->drawing,
             'trpgmmodel_id' => $request->trpgmmodel,
         ];
         $ee->update($data);
