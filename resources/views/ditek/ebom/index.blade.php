@@ -42,7 +42,7 @@
                                         <td>{{ $ebom->component }}</td>
                                         <td>{{ $ebom->item_description }}</td>
                                         <td>{{ $ebom->quantity }}</td>
-                                        <td>{{ $ebom->trpgmmodel->n_pgm_model }}</td>
+                                        <td>{{ $ebom->trpgmmodel?->n_pgm_model }}</td>
                                         <td class="text-center">
                                             <a onclick="handleDelete({{ $ebom->id }},'ebom')"
                                                 class="btn btn-danger btn-sm"><i data-confirm-delete="true"

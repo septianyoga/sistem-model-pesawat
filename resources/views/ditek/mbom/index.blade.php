@@ -44,7 +44,7 @@
                                         <td>{{ $mbom->item_description }}</td>
                                         <td>{{ $mbom->quantity }}</td>
                                         <td>{{ $mbom->ebom->nha }}</td>
-                                        <td>{{ $mbom->trpgmmodel->n_pgm_model }}</td>
+                                        <td>{{ $mbom->trpgmmodel?->n_pgm_model }}</td>
                                         <td class="text-center">
                                             <a onclick="handleDelete({{ $mbom->id }},'mbom')"
                                                 class="btn btn-danger btn-sm"><i data-confirm-delete="true"

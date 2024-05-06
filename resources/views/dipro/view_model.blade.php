@@ -35,12 +35,12 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $model->trpgm->c_pgm }}</td>
-                                        <td>{{ $model->trpgmsub->c_pgm_sub }}</td>
-                                        <td>{{ $model->trpon->c_pgm_ver }}</td>
+                                        <td>{{ $model->trpgmsub?->c_pgm_sub }}</td>
+                                        <td>{{ $model->trpon?->c_pgm_ver }}</td>
                                         <td>{{ $model->c_pgm_model }}</td>
                                         <td>{{ $model->i_part_nha }}</td>
                                         <td>{{ $model->n_pgm_model }}</td>
-                                        <td>{{ $model->user->name }}</td>
+                                        <td>{{ $model->user?->name }}</td>
                                         <td>{{ $model->created_at }}</td>
                                         <td class="text-center">
                                             <a href="/view_model/{{ $model->id }}" title="Detail"
